@@ -61,11 +61,11 @@ const Index = () => {
   const [showLogs, setShowLogs] = useState(true);
   const [busy, setBusy] = useState(false);
   const { toast } = useToast();
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length]);
 
   const canonical = useMemo(() => (typeof window !== "undefined" ? window.location.href : "https://example.com"), []);
@@ -142,7 +142,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-app-gradient">
+    <div className="min-h-screen dark bg-app-gradient">
       <Helmet>
         <title>Cosmic Dialog — Futuristic AI Chat</title>
         <meta name="description" content="Futuristic Gemini-like AI chat with planning, execution, tool logs, and Markdown rendering." />
@@ -183,12 +183,13 @@ const Index = () => {
             </CardHeader>
             <Separator />
             <CardContent className="pt-4">
-              <div ref={scrollRef as any} className="h-[52vh] sm:h-[60vh] overflow-hidden">
-                <ScrollArea className="h-full pr-3">
+              <div className="h-[52vh] sm:h-[60vh] overflow-hidden">
+                <ScrollArea className="h-full pr-3 smooth-scroll">
                   <div className="space-y-3">
                     {messages.map((m) => (
                       <ChatMessage key={m.id} role={m.role} content={m.content} timestamp={m.ts} loading={m.loading} />
                     ))}
+                    <div ref={bottomRef} />
                   </div>
                 </ScrollArea>
               </div>

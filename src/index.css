@@ -41,7 +41,11 @@ All colors MUST be HSL.
     /* Brand accents and effects */
     --primary-glow: 222.2 84% 60%;
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary-glow) / 0.8));
-    --gradient-surface: linear-gradient(180deg, hsl(var(--card) / 0.8), hsl(var(--background) / 0.9));
+
+    /* App canvas gradient (light) */
+    --canvas-start: 210 16% 92%;
+    --canvas-end: 220 18% 86%;
+    --gradient-surface: linear-gradient(180deg, hsl(var(--canvas-start)), hsl(var(--canvas-end)));
 
     /* Shadows */
     --shadow-elevated: 0 12px 24px -8px hsl(var(--ring) / 0.15);
@@ -108,7 +112,11 @@ All colors MUST be HSL.
     /* Dark mode brand effects */
     --primary-glow: 224.3 76.3% 62%;
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary-glow) / 0.8));
-    --gradient-surface: linear-gradient(180deg, hsl(var(--card) / 0.6), hsl(var(--background) / 0.85));
+
+    /* App canvas gradient (dark) */
+    --canvas-start: 224 40% 8%;
+    --canvas-end: 228 60% 4%;
+    --gradient-surface: linear-gradient(180deg, hsl(var(--canvas-start)), hsl(var(--canvas-end)));
     --shadow-elevated: 0 12px 24px -8px hsl(var(--ring) / 0.25);
     --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.35);
     --focus-ring: 0 0 0 3px hsl(var(--ring) / 0.35);
@@ -193,4 +201,8 @@ All colors MUST be HSL.
   }
   .typing-dot:nth-child(2) { animation-delay: .2s; }
   .typing-dot:nth-child(3) { animation-delay: .4s; }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
 }

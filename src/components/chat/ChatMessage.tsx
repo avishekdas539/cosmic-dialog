@@ -20,22 +20,12 @@ const roleLabel: Record<ChatRole, string> = {
 
 export function ChatMessage({ role, content, timestamp, loading }: ChatMessageProps) {
   const isUser = role === "user";
-  const roleClass = isUser
-    ? "bg-primary/5 border-primary/30"
-    : role === "assistant"
-    ? "bg-gradient-primary text-primary-foreground border-transparent"
-    : role === "planner"
-    ? "bg-accent/40 border-accent/50"
-    : role === "executor"
-    ? "bg-secondary/40 border-secondary/50"
-    : role === "system"
-    ? "bg-muted border-muted"
-    : "bg-card/80 border-border/50";
+  const roleClass = "text-foreground";
 
   const bubble = (
     <div
       className={cn(
-        "rounded-xl border p-3 sm:p-4 shadow-sm backdrop-blur",
+        "rounded-xl p-3 sm:p-4",
         "transition-transform duration-200 hover:scale-[1.01]",
         roleClass
       )}
