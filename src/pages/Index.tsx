@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import ChatMessage, { ChatRole } from "@/components/chat/ChatMessage";
+import ChatInput from "@/components/chat/ChatInput";
 
 interface ToolLog {
   id: string;
@@ -194,27 +195,7 @@ const Index = () => {
                 </ScrollArea>
               </div>
 
-              <div className="mt-4 rounded-xl border bg-card/70 p-3 backdrop-blur">
-                <Textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask anything. I’ll plan, execute tools, and answer with markdown."
-                  className="min-h-[84px] resize-y"
-                  disabled={busy}
-                  aria-busy={busy}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      onSend();
-                    }
-                  }}
-                />
-                <div className="mt-3 flex items-center justify-end gap-2">
-                  <Button variant="secondary" onClick={() => setInput((v) => v + "\n# ")}>H1</Button>
-                  <Button variant="secondary" onClick={() => setInput((v) => v + "**bold** ")}>Bold</Button>
-                  <Button onClick={onSend} className="hover-scale" disabled={busy}>{busy ? "Sending…" : "Send"}</Button>
-                </div>
-              </div>
+              <ChatInput value={input} onChange={setInput} onSend={onSend} disabled={busy} />
             </CardContent>
           </Card>
         </section>
