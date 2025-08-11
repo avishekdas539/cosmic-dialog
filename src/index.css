@@ -38,6 +38,19 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
+    /* Brand accents and effects */
+    --primary-glow: 222.2 84% 60%;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary-glow) / 0.8));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--card) / 0.8), hsl(var(--background) / 0.9));
+
+    /* Shadows */
+    --shadow-elevated: 0 12px 24px -8px hsl(var(--ring) / 0.15);
+    --shadow-glow: 0 0 36px hsl(var(--primary-glow) / 0.35);
+
+    /* Focus ring */
+    --focus-ring: 0 0 0 3px hsl(var(--ring) / 0.25);
+
+    /* Sidebar tokens */
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -91,6 +104,14 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Dark mode brand effects */
+    --primary-glow: 224.3 76.3% 62%;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary-glow) / 0.8));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--card) / 0.6), hsl(var(--background) / 0.85));
+    --shadow-elevated: 0 12px 24px -8px hsl(var(--ring) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.35);
+    --focus-ring: 0 0 0 3px hsl(var(--ring) / 0.35);
   }
 }
 
@@ -101,5 +122,43 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Utilities and component-level helpers */
+@layer utilities {
+  .bg-app-gradient {
+    background-image: var(--gradient-surface);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  .story-link {
+    position: relative;
+  }
+  .story-link::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    left: 0;
+    bottom: -2px;
+    background: hsl(var(--primary));
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .interactive-spotlight {
+    background: radial-gradient(600px circle at var(--x, 0%) var(--y, 0%), hsl(var(--primary) / 0.12), transparent 60%);
   }
 }
